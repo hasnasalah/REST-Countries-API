@@ -4,17 +4,17 @@
   "description": "![Design preview for the REST Countries API with color theme switcher coding challenge](preview.jpg)",
   "main": "index.js",
   "scripts": {
-  "build": "vite build",
-  "deploy": "gh-pages -d dist",
+    "build": "vite build",
+    "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^24.10.1",
     "gh-pages": "^6.3.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vite": "^7.2.4"
   }
 }
