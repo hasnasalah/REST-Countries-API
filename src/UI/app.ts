@@ -3,6 +3,8 @@ import {Country} from "../models/Country.js"
 const ul=document.getElementById("ul");
 let allCountries: Country[] = [];   
 
+//search 
+const search=document.getElementById("search")as HTMLInputElement;
 
 // show details 
    const countryModaL=document.getElementById("country-modal");
@@ -18,7 +20,7 @@ let allCountries: Country[] = [];
 
 async function displayData(countries: Country[] = allCountries){
 
-  if (!ul) return;
+  if (!ul||!search) return;
     ul.style.display = "grid";
     
     ul.innerHTML = ""; 
@@ -56,6 +58,8 @@ async function displayData(countries: Country[] = allCountries){
                 ul.style.display = "none";
       showCountryDetails(item);
     });
+      
+   
 
         fragment.appendChild(li);
     });
@@ -164,4 +168,16 @@ closeModalBtn?.addEventListener("click", () => {
   countryModaL.style.display = "none";
   ul.style.display = "grid";
   clearModal();
+});
+
+    search.addEventListener("input", () => {
+    const inputValue = search.value.toLowerCase();
+    for(let item of allCountries){
+      if(item.fullName.name.toLowerCase().includes(inputValue))
+         showCountryDetails(item);
+     if (ul) ul.style.display = "none"; 
+        if (countryModaL) countryModaL.style.display = "grid"; 
+    }
+  
+    search.value="";
 });

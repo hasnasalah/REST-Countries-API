@@ -11,10 +11,15 @@ export async function getCountryData():Promise<Country[]>{
     }
     const result = await response.json();
     const countries:Country[]=[];
+    
      for (const c of result) {
 
     
      const nativeNames: any = c.name.nativeName ? Object.values(c.name.nativeName)[0] : null;
+     const topLevelDomain = c.tld ? c.tld.join(", ") : "";
+    const currencies = c.currencies ? Object.values(c.currencies).map((cur: any) => cur.name).join(", ") : "";
+    const languages = c.languages ? Object.values(c.languages).join(", ") : "";
+     const borderCountries = c.borders ? c.borders.join(", ") : "None";
       const fullName = {
         name: c.name.official,
         nativeName: nativeNames?.official || c.name.official,
@@ -26,10 +31,10 @@ export async function getCountryData():Promise<Country[]>{
         c.region,
         c.subregion,
        c.capital,
-       c.topLevelDomain,
-       c.currencies,
-       c.language,
-       c.borders,
+       topLevelDomain,
+       currencies,
+       languages,
+       borderCountries,
        c.flags.png 
       );
 
