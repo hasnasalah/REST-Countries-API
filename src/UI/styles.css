@@ -211,18 +211,10 @@ display: grid;
 .border-container {
   display: flex;
   gap: 8px;
-  overflow-x: auto;       /* enable horizontal scroll if too many buttons */
+    flex-wrap: wrap; 
+  overflow-x: auto;     
   padding: 4px 0;
-  -webkit-overflow-scrolling: touch; /* smooth scrolling on mobile */
-}
-
-.border-container::-webkit-scrollbar {
-  height: 6px; /* optional: scrollbar height */
-}
-
-.border-container::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.2);
-  border-radius: 3px;
+ 
 }
 .border-btn {
     padding: 6px 10px;
@@ -235,4 +227,47 @@ display: grid;
 }
 .border-btn:hover {
     background-color: #bbb;
+}
+@media (max-width: 1024px) {
+  #country-modal {
+    grid-template-columns: 1fr; 
+    gap: 16px;
+    margin: 20px;
+  }
+
+  #info {
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto auto auto;
+    gap: 16px;
+  }
+
+  #infoA, #infoB, #infoC {
+    grid-column: 1;
+  }
+
+  #image-container img {
+    max-width: 100%;
+  }
+
+  .border-container {
+    justify-content: flex-start; 
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  ul {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    margin: 1rem;
+    gap: 1rem;
+  }
+
+  #country-modal {
+    margin: 10px;
+  }
+
+  .border-btn {
+    font-size: 0.85rem;
+    padding: 5px 8px;
+  }
 }
