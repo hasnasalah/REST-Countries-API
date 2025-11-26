@@ -12,9 +12,10 @@ export class Country{
       topLevelDomain:string;
       currencies:string;
       languages:string;
-      borderCountries:string;
+      borderCountries:string[];
       image:string;
-      constructor(fullName:FullName,population:number,region:string,subRegion:string,capital:string,topLevelDomain:string,currencies:string,languages:string,borderCountries:string,image:string){
+      code:string;
+      constructor(fullName:FullName,population:number,region:string,subRegion:string,capital:string,topLevelDomain:string,currencies:string,languages:string,borderCountries:string[],image:string,code:string){
         this.fullName=fullName;
         this.population=population;
         this.region=region;
@@ -25,6 +26,7 @@ export class Country{
         this.languages=languages;
         this.borderCountries=borderCountries;
         this.image=image;
+        this.code=code;
       }
 
 
@@ -39,6 +41,7 @@ displayDetails(): string {
         Currencies: ${this.currencies}
         Languages: ${this.languages}
         Border Countries: ${this.borderCountries}
+        Codes: ${this.code}
         `;
     }
 }

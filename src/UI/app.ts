@@ -40,12 +40,12 @@ async function displayData(countries: Country[] = allCountries){
             name.innerHTML=item.fullName.name;
 
         const population:HTMLElement = document.createElement("p");
-        population.innerText = `Population: ${item.population}`; 
+        population.innerHTML = `<strong>Population: </strong> ${item.population}`; 
         const region:HTMLElement = document.createElement("p");
-        region.innerText = "Region "+item.region; 
+        region.innerHTML = "<strong>Region: </strong>"+item.region; 
 
           const capital:HTMLElement = document.createElement("p");
-        capital.innerText = "Capital "+item.capital; 
+        capital.innerHTML = "<strong>Capital: </strong>"+item.capital; 
         li.appendChild(img);
         li.appendChild(name);
         li.appendChild(population);
@@ -122,15 +122,15 @@ function showCountryDetails(country: Country) {
         title?.appendChild(name);
 
         const nativeName:HTMLElement=document.createElement("p");
-        nativeName.innerHTML=`Native Name: ${country.fullName.nativeName}`;        
+        nativeName.innerHTML=`<strong>Native Name: </strong> ${country.fullName.nativeName}`;        
         const population:HTMLElement = document.createElement("p");
-        population.innerText = `Population: ${country.population}`; 
+        population.innerHTML = `<strong>Population: </strong> ${country.population}`; 
         const region:HTMLElement = document.createElement("p");
-        region.innerText = `Region: ${country.region}`; 
+        region.innerHTML = `<strong>Region: </strong> ${country.region}`; 
         const subRegion:HTMLElement=document.createElement("p");
-        subRegion.innerText=`Sub Region : ${country.subRegion}`
+        subRegion.innerHTML=`<strong>Sub Region: </strong> ${country.subRegion}`
         const capital:HTMLElement = document.createElement("p");
-        capital.innerText = "Capital "+country.capital; 
+        capital.innerHTML = `<strong>Capital: </strong> ${country.capital}`; 
 
         infoA.appendChild(nativeName);
         infoA.appendChild(population);
@@ -138,16 +138,35 @@ function showCountryDetails(country: Country) {
         infoA.appendChild(subRegion)
         infoA.appendChild(capital);
         const tlp:HTMLElement=document.createElement("p");
-        tlp.innerText=`Top Level Domain: ${country.topLevelDomain}`;
+        tlp.innerHTML=`<strong>Top Level Domain: </strong> ${country.topLevelDomain}`;
         const currencie=document.createElement("p");
-        currencie.innerHTML=`Currencies: ${country.currencies}`;
+        currencie.innerHTML=`<strong>Currencies: </strong> ${country.currencies}`;
         const language=document.createElement("p");
-        language.innerHTML=`Lnaguages: ${country.languages}`;
+        language.innerHTML=`<strong>Languages: </strong> ${country.languages}`;
 
         infoB.append(tlp,currencie,language);
     
-        const border=document.createElement("p");
-        border.innerHTML=`Borders: ${country.borderCountries}`;
+       const border = document.createElement("div");
+      border.classList.add("border-container");
+
+    const p = document.createElement("strong");
+    p.textContent = "Borders: ";
+    border.appendChild(p);
+
+        country.borderCountries.forEach(name => {
+        const btn = document.createElement("button");
+          btn.textContent = name;
+         btn.classList.add("border-btn");
+        btn.addEventListener("click", () => {
+        const found = allCountries.find(c => c.fullName.name === name);
+          if (found) {
+        showCountryDetails(found);
+    }
+    
+});
+
+    border.appendChild(btn);
+});
          
         infoC.appendChild(border);
 
@@ -169,15 +188,28 @@ closeModalBtn?.addEventListener("click", () => {
   ul.style.display = "grid";
   clearModal();
 });
+const searchError=document.getElementById("search-error");
+search.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        const inputValue = search.value.toLowerCase().trim();
+      if (!inputValue) {
+            if (searchError) {
+                searchError.textContent = "Please type a country name.";
+                searchError.style.display = "block"; 
+            }
+            return;
+        } else {
+            if (searchError) searchError.style.display = "none"; 
+        }
+        for (let item of allCountries) {
+            if (item.fullName.name.toLowerCase().includes(inputValue)) {
+                showCountryDetails(item);
 
-    search.addEventListener("input", () => {
-    const inputValue = search.value.toLowerCase();
-    for(let item of allCountries){
-      if(item.fullName.name.toLowerCase().includes(inputValue))
-         showCountryDetails(item);
-     if (ul) ul.style.display = "none"; 
-        if (countryModaL) countryModaL.style.display = "grid"; 
+                if (ul) ul.style.display = "none"; 
+                if (countryModaL) countryModaL.style.display = "grid";
+                search.value = "";
+                break;
+            }
+        }
     }
-  
-    search.value="";
 });
