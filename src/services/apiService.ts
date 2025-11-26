@@ -1,9 +1,9 @@
-import { Country } from "../models/Country";
-import { NetworkError } from "../models/NetworkError";
-import { DataError } from "../models/DataError";
+import { Country } from "../models/Country.js";
+import { NetworkError } from "../models/NetworkError.js";
+import { DataError } from "../models/DataError.js";
 
 export async function getCountryData():Promise<Country[]>{
-     const url = "https://restcountries.com/v3.1/all?status=true&fields=name,popultion,region,capital,flags,subregion,currencies,languages,borders";
+     const url = "https://restcountries.com/v3.1/all?fields=name,population,region,capital,tld,subregion,currencies,languages,borders,flags";
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -11,15 +11,14 @@ export async function getCountryData():Promise<Country[]>{
     }
     const result = await response.json();
     const countries:Country[]=[];
-     for (const c of result.countries) {
+     for (const c of result) {
 
-       const firstField = Object.values(c.name.nativeName)[0];
-       
-
+    
+     const nativeNames: any = c.name.nativeName ? Object.values(c.name.nativeName)[0] : null;
       const fullName = {
         name: c.name.official,
-        nativeName: c.name.nativeName.firstField.official,
-      };
+        nativeName: nativeNames?.official || c.name.official,
+           };
 
       const country = new Country(
         fullName,
@@ -27,10 +26,11 @@ export async function getCountryData():Promise<Country[]>{
         c.region,
         c.subregion,
        c.capital,
+       c.topLevelDomain,
        c.currencies,
-       c.languages,
-       c.borderCountries,
-       c.image
+       c.language,
+       c.borders,
+       c.flags.png 
       );
 
       countries.push(country);
