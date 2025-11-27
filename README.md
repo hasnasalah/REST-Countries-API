@@ -76,7 +76,7 @@ A responsive web application that displays country data with detailed informatio
 * [MDN Web Docs](https://developer.mozilla.org/) – JavaScript & DOM references
 * [Vercel](https://vercel.com/) – Deployment platform
 * [Medium](https://medium.com/geekculture/accessing-data-inside-nested-data-structures-in-javascript-an-example-21c5ea1372e3) netsed Objects
-* [youtube] (https://www.youtube.com/watch?v=VU0BQnuPfwc) maping nested objects
+* [youtube](https://www.youtube.com/watch?v=VU0BQnuPfwc) maping nested objects
 
 
 ## setup
