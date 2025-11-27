@@ -5,6 +5,7 @@ let allCountries: Country[] = [];
 
 //search 
 const search=document.getElementById("search")as HTMLInputElement;
+const searchSection=document.getElementById("search-section");
 
 // show details 
    const countryModaL=document.getElementById("country-modal");
@@ -17,10 +18,10 @@ const search=document.getElementById("search")as HTMLInputElement;
 
 
 
-
+// function to display all the contries includes also filter
 async function displayData(countries: Country[] = allCountries){
 
-  if (!ul||!search) return;
+  if (!ul||!search||!searchSection) return;
     ul.style.display = "grid";
     
     ul.innerHTML = ""; 
@@ -46,6 +47,7 @@ async function displayData(countries: Country[] = allCountries){
 
           const capital:HTMLElement = document.createElement("p");
         capital.innerHTML = "<strong>Capital: </strong>"+item.capital; 
+
         li.appendChild(img);
         li.appendChild(name);
         li.appendChild(population);
@@ -56,6 +58,7 @@ async function displayData(countries: Country[] = allCountries){
             if(!countryModaL)return;
              countryModaL.style.display = "grid";
                 ul.style.display = "none";
+                searchSection.style.display="none";
       showCountryDetails(item);
     });
       
@@ -66,47 +69,44 @@ async function displayData(countries: Country[] = allCountries){
 
     ul.appendChild(fragment);
 }
+// display data automaticly
 window.addEventListener("DOMContentLoaded", async () => {
   allCountries=await getCountryData() ;
   displayData(); 
 });
 
+// filer by region
 const filter=document.getElementById("region-filter") as HTMLSelectElement;
-
 function filterByRegion(countries: Country[] = allCountries,region:string) {
     return countries.filter(countries => countries.region === region);
 }
-
 filter?.addEventListener("change", async()=> {
-
-    allCountries=await getCountryData() ;
+allCountries=await getCountryData() ;
 let selectedRegion=filter.value;
-
 let filtredArray=filterByRegion(allCountries,selectedRegion);
 displayData(filtredArray);
 });
 
+// darm mode and light mode
 let darkmode = localStorage.getItem('darkmode')
 const themeSwitch = document.getElementById('theme-toggle')
-
 const enableDarkmode = () => {
   document.body.classList.add('darkmode')
   localStorage.setItem('darkmode', 'active')
 }
-
 const disableDarkmode = () => {
   document.body.classList.remove('darkmode')
   localStorage.setItem('darkmode',"null")
 }
-
 if(darkmode === "active") enableDarkmode()
-
 themeSwitch?.addEventListener("click", () => {
   darkmode = localStorage.getItem('darkmode')
   darkmode !== "active" ? enableDarkmode() : disableDarkmode()
 });
 
 
+
+// function to show details
 function showCountryDetails(country: Country) {
   clearModal();
     if(!countryModaL||!infoA||!info||!infoB||!infoC||!image||!title) return;
@@ -156,6 +156,8 @@ function showCountryDetails(country: Country) {
         country.borderCountries.forEach(name => {
         const btn = document.createElement("button");
           btn.textContent = name;
+
+          // border country buttons
          btn.classList.add("border-btn");
         btn.addEventListener("click", () => {
         const found = allCountries.find(c => c.fullName.name === name);
@@ -171,6 +173,8 @@ function showCountryDetails(country: Country) {
         infoC.appendChild(border);
 
 }
+
+// clear function in modal
 function clearModal() {
   if (!image || !infoA || !infoB || !infoC || !info||!title) return;
   title.innerHTML="";
@@ -180,14 +184,20 @@ function clearModal() {
   infoC.innerHTML = "";
 }
 
-const closeModalBtn = document.getElementById("close-modal");
 
+//back button in modal
+const closeModalBtn = document.getElementById("close-modal");
 closeModalBtn?.addEventListener("click", () => {
-  if (!countryModaL || !ul) return;
+  if (!countryModaL || !ul||!searchSection) return;
   countryModaL.style.display = "none";
   ul.style.display = "grid";
+  searchSection.style.display="flex";
   clearModal();
 });
+
+
+
+//search field
 const searchError=document.getElementById("search-error");
 search.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {

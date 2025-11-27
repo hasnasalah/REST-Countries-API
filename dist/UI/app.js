@@ -3,6 +3,7 @@ const ul = document.getElementById("ul");
 let allCountries = [];
 //search 
 const search = document.getElementById("search");
+const searchSection = document.getElementById("search-section");
 // show details 
 const countryModaL = document.getElementById("country-modal");
 const image = document.getElementById("image-container");
@@ -11,8 +12,9 @@ const infoB = document.getElementById("info-b");
 const infoC = document.getElementById("info-c");
 const info = document.getElementById("info");
 const title = document.getElementById("title");
+// function to display all the contries includes also filter
 async function displayData(countries = allCountries) {
-    if (!ul || !search)
+    if (!ul || !search || !searchSection)
         return;
     ul.style.display = "grid";
     ul.innerHTML = "";
@@ -40,16 +42,19 @@ async function displayData(countries = allCountries) {
                 return;
             countryModaL.style.display = "grid";
             ul.style.display = "none";
+            searchSection.style.display = "none";
             showCountryDetails(item);
         });
         fragment.appendChild(li);
     });
     ul.appendChild(fragment);
 }
+// display data automaticly
 window.addEventListener("DOMContentLoaded", async () => {
     allCountries = await getCountryData();
     displayData();
 });
+// filer by region
 const filter = document.getElementById("region-filter");
 function filterByRegion(countries = allCountries, region) {
     return countries.filter(countries => countries.region === region);
@@ -60,6 +65,7 @@ filter?.addEventListener("change", async () => {
     let filtredArray = filterByRegion(allCountries, selectedRegion);
     displayData(filtredArray);
 });
+// darm mode and light mode
 let darkmode = localStorage.getItem('darkmode');
 const themeSwitch = document.getElementById('theme-toggle');
 const enableDarkmode = () => {
@@ -76,6 +82,7 @@ themeSwitch?.addEventListener("click", () => {
     darkmode = localStorage.getItem('darkmode');
     darkmode !== "active" ? enableDarkmode() : disableDarkmode();
 });
+// function to show details
 function showCountryDetails(country) {
     clearModal();
     if (!countryModaL || !infoA || !info || !infoB || !infoC || !image || !title)
@@ -117,6 +124,7 @@ function showCountryDetails(country) {
     country.borderCountries.forEach(name => {
         const btn = document.createElement("button");
         btn.textContent = name;
+        // border country buttons
         btn.classList.add("border-btn");
         btn.addEventListener("click", () => {
             const found = allCountries.find(c => c.fullName.name === name);
@@ -128,6 +136,7 @@ function showCountryDetails(country) {
     });
     infoC.appendChild(border);
 }
+// clear function in modal
 function clearModal() {
     if (!image || !infoA || !infoB || !infoC || !info || !title)
         return;
@@ -137,14 +146,17 @@ function clearModal() {
     infoB.innerHTML = "";
     infoC.innerHTML = "";
 }
+//back button in modal
 const closeModalBtn = document.getElementById("close-modal");
 closeModalBtn?.addEventListener("click", () => {
-    if (!countryModaL || !ul)
+    if (!countryModaL || !ul || !searchSection)
         return;
     countryModaL.style.display = "none";
     ul.style.display = "grid";
+    searchSection.style.display = "flex";
     clearModal();
 });
+//search field
 const searchError = document.getElementById("search-error");
 search.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {

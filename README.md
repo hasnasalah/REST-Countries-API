@@ -5,7 +5,6 @@
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
-  - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -38,12 +37,6 @@ A responsive web application that displays country data with detailed informatio
 
 ![](./screenshot/Screenshot%202025-11-26%20162503.png)
 
-
-### Links
-
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
-
 ## My process
 
 ### Built with
@@ -72,19 +65,38 @@ A responsive web application that displays country data with detailed informatio
 * Explore using a frontend framework like React to simplify state management
 
 ## setup
-
-
-1. **Clone the repository**:
+**Clone the repository**:
 
 ```bash
 git clone https://github.com/hasnasalah/REST-Countries-API
+npm init -y
+npm install typescript @types/node --save-dev
+npx tsc --init
+npx tsc
 npm install -g live-server
 live-server
 
 
+##Usefulle resources:
+* [Vite](https://vitejs.dev/) – Bundler and build tool
+* [TypeScript](https://www.typescriptlang.org/) – Superset of JavaScript for type safety
+* [REST Countries API](https://restcountries.com/) – Country data source
+* [Font Awesome](https://fontawesome.com/) – Icons used for dark mode toggle
+* [Google Fonts – Material Symbols](https://fonts.google.com/icons) – Icons used for search input
+* [CSS-Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) – Layout reference
+* [CSS-Tricks Grid Guide](https://css-tricks.com/snippets/css/complete-guide-grid/) – Grid reference
+* [MDN Web Docs](https://developer.mozilla.org/) – JavaScript & DOM references
+* [Vercel](https://vercel.com/) – Deployment platform
+* [Medium](https://medium.com/geekculture/accessing-data-inside-nested-data-structures-in-javascript-an-example-21c5ea1372e3) netsed Objects
+* [youtube] (https://www.youtube.com/watch?v=VU0BQnuPfwc) maping nested objects
+
+ 
+
+
+
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
+- Website - [Hasna Ben Jillali](https://rest-countries-iu6smzjgd-hasna-ben-jillalis-projects.vercel.app/)
 
 
 ## Acknowledgments

@@ -4,9 +4,10 @@
   "description": "![Design preview for the REST Countries API with color theme switcher coding challenge](preview.jpg)",
   "main": "index.js",
   "scripts": {
-    "build": "vite build",
-    "deploy": "gh-pages -d dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+    "test": "echo"
   },
   "keywords": [],
   "author": "",
