@@ -10,6 +10,7 @@
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
+- [Setup]
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
@@ -64,6 +65,20 @@ A responsive web application that displays country data with detailed informatio
 
 * Explore using a frontend framework like React to simplify state management
 
+### Useful esources:
+* [Vite](https://vitejs.dev/) – Bundler and build tool
+* [TypeScript](https://www.typescriptlang.org/) –Typescript
+* [REST Countries API](https://restcountries.com/) – Country data source
+* [Font Awesome](https://fontawesome.com/) – Icons used for dark mode toggle
+* [Google Fonts – Material Symbols](https://fonts.google.com/icons) – Icons used for search input
+* [CSS-Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) – Layout reference
+* [CSS-Tricks Grid Guide](https://css-tricks.com/snippets/css/complete-guide-grid/) – Grid reference
+* [MDN Web Docs](https://developer.mozilla.org/) – JavaScript & DOM references
+* [Vercel](https://vercel.com/) – Deployment platform
+* [Medium](https://medium.com/geekculture/accessing-data-inside-nested-data-structures-in-javascript-an-example-21c5ea1372e3) netsed Objects
+* [youtube] (https://www.youtube.com/watch?v=VU0BQnuPfwc) maping nested objects
+
+
 ## setup
 **Clone the repository**:
 
@@ -75,20 +90,10 @@ npx tsc --init
 npx tsc
 npm install -g live-server
 live-server
+```
+---
 
 
-##Usefulle resources:
-* [Vite](https://vitejs.dev/) – Bundler and build tool
-* [TypeScript](https://www.typescriptlang.org/) – Superset of JavaScript for type safety
-* [REST Countries API](https://restcountries.com/) – Country data source
-* [Font Awesome](https://fontawesome.com/) – Icons used for dark mode toggle
-* [Google Fonts – Material Symbols](https://fonts.google.com/icons) – Icons used for search input
-* [CSS-Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) – Layout reference
-* [CSS-Tricks Grid Guide](https://css-tricks.com/snippets/css/complete-guide-grid/) – Grid reference
-* [MDN Web Docs](https://developer.mozilla.org/) – JavaScript & DOM references
-* [Vercel](https://vercel.com/) – Deployment platform
-* [Medium](https://medium.com/geekculture/accessing-data-inside-nested-data-structures-in-javascript-an-example-21c5ea1372e3) netsed Objects
-* [youtube] (https://www.youtube.com/watch?v=VU0BQnuPfwc) maping nested objects
 
  
 
