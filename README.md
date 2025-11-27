@@ -101,7 +101,7 @@ live-server
 
 ## Author
 
-- Website - [Hasna Ben Jillali](https://rest-countries-8akiytj5e-hasna-ben-jillalis-projects.vercel.app/)
+- Website - [Hasna Ben Jillali](https://rest-countries-g2h6i7w0n-hasna-ben-jillalis-projects.vercel.app/)
 
 
 ## Acknowledgments
