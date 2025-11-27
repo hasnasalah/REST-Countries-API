@@ -3,7 +3,7 @@ import { NetworkError } from "../models/NetworkError.js";
 import { DataError } from "../models/DataError.js";
 export async function getCountryData() {
     const url = "https://restcountries.com/v3.1/all?fields=name,cca2,cca3,capital,tld,subregion,currencies,languages,borders,flags";
-    const url2 = "https://restcountries.com/v3.1/all?fields=population,region";
+    const url2 = "https://restcountries.com/v3.1/all?fields=cca2,cca3,population,region";
     try {
         const response = await fetch(url);
         const respense2 = await fetch(url2);
@@ -36,13 +36,9 @@ export async function getCountryData() {
                 name: c.name.official,
                 nativeName: nativeNames?.official || c.name.official,
             };
-            let population = 0;
-            let region = "";
-            for (const cd of codesData) {
-                population = cd.population;
-                region = cd.region;
-                break;
-            }
+            const match = codesData.find((cd) => cd.cca2 === c.cca2 || cd.cca3 === c.cca3);
+            const population = match?.population;
+            const region = match?.region;
             const country = new Country(fullName, population, region, c.subregion, c.capital, topLevelDomain, currencies, languages, borderNames, c.flags.png, code);
             countries.push(country);
         }
